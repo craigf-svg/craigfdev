@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Drawer, ModalClose, Link, Typography } from '@mui/joy';
+import { Button, Drawer, ModalClose, Link, Typography, Tooltip } from '@mui/joy';
 import { Menu, Cameraswitch } from '@mui/icons-material';
 import solutionsArchitect from './media/awssolutions.png';
 import cloudPractitioner from './media/awscloud.png';
 import cloudQuestCloudPractitioner from './media/awscloudquest.png';
+import cloudFront from './media/awscloudfront.png';
+import s3 from './media/awss3.png';
 import linkedinLogo from './media/LinkedInLogo.svg';
 import githubLogo from './media/GithubLogo.svg';
 import { CERT_LINKS, PROFILE_LINKS, styles } from './DrawerInfo';
@@ -54,11 +56,25 @@ export default function MyDrawer({ cycleCamPosition, enableFlyControls }) {
               ))}
             </div>
           </div>
+
           <div>
             <Typography level="h3" style={styles.sectionTitle}>Connect</Typography>
             <div style={styles.container}>
               <img src={linkedinLogo} alt="LinkedIn" style={styles.image} onClick={() => openLink(PROFILE_LINKS.linkedin)} />
               <img src={githubLogo} alt="GitHub" style={styles.image} onClick={() => openLink(PROFILE_LINKS.github)} />
+            </div>
+          </div>
+
+          <div>
+            <div style={styles.smallerContainer}>
+              <Typography level="h3" style={styles.sectionTitle}>Hosted with </Typography>
+              <Tooltip title="AWS CloudFront">
+                <img src={cloudFront} alt="CloudFront" style={styles.smallerImage} />
+              </Tooltip>
+              <Typography level="h2" style={{ ...styles.sectionTitle, marginTop: 0 }}>+</Typography>
+              <Tooltip title="AWS S3">
+                <img src={s3} alt="S3" style={styles.smallerImage} />
+              </Tooltip>
             </div>
           </div>
 

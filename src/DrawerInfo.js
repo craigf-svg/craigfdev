@@ -56,6 +56,20 @@ const styles = {
     margin: '0px 5px 0px 5px',
     cursor: 'pointer'
   },
+  smallerContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px'
+  },
+  smallerImage: {
+    width: 50,
+    height: 50,
+    border: '3px solid black',
+    borderRadius: 16,
+    margin: '0px 5px 0px 5px',
+    cursor: 'pointer'
+  },
   flyModeContainer: {
     marginTop: 20,
     textAlign: 'center',
