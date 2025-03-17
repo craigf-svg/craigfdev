@@ -9,6 +9,7 @@ import Text from './Text.js';
 import Space from "./Space.js";
 
 extend({ TextGeometry })
+const ROTATION_SPEED = .05;
 
 export default function UniverseGroup(props) {
   const { camPosition, cameraRef } = props;
@@ -17,10 +18,9 @@ export default function UniverseGroup(props) {
   const spaceMesh = React.useRef();
   const textMesh = React.useRef();
 
-  //TODO: Update to be dependent on clock for speed instead of FPS
   useFrame(({ clock }) => {
     if (spaceMesh.current) {
-      spaceMesh.current.rotation.y += .0005;
+      spaceMesh.current.rotation.y = clock.getElapsedTime() * ROTATION_SPEED;
       spaceMesh.current.position.set(0, 0, 0);
     }
   })
