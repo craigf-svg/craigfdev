@@ -28,8 +28,8 @@ export default function UniverseGroup(props) {
   useEffect(() => {
     if (cameraRef.current && !zooming) {
       if (camPosition === 'one') {
-        cameraRef.current.position.set(10.000000000000131, 5.9999999999996465, 37.960000000003895);
-        cameraRef.current.rotation.set(-0.15676420585887205, 0.25455993400105126, 0.039781879577052454);
+        cameraRef.current.position.set(-3, 6, 37.96);
+        cameraRef.current.rotation.set(0, -0.05, 0);
       } else {
         cameraRef.current.position.set(16.86008104106376, -3.2902824350818705, -8.921678538658027);
         cameraRef.current.rotation.set(3.10122463928674, -0.2030656821451082, 3.13344727150912);
@@ -59,7 +59,7 @@ export default function UniverseGroup(props) {
       <group ref={textMesh}>
         <Text />
       </group>
-      <PerspectiveCamera makeDefault position={[10, 6, 156]} fov={75} ref={cameraRef}>
+      <PerspectiveCamera makeDefault position={[-3, 6, 156]} rotation={[0, -0.05, 0]} fov={75} ref={cameraRef}>
         <ambientLight intensity={0.3} />
         <spotLight position={[10, 10, 10]} intensity={2} angle={Math.PI / 4} />
       </PerspectiveCamera>
