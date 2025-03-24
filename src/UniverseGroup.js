@@ -10,11 +10,19 @@ import Space from "./Space.js";
 
 extend({ TextGeometry })
 const ROTATION_SPEED = .05;
+// Values for intro sequence
+const STARTPOINT = 156;
+const MIDPOINT = 112;
+const ENDPOINT = 38;
+const QUICK_ZOOM_START_TIME = 9.1287;
+const SLOW_ZOOM_SPEED = 4.82;
+const QUICK_ZOOM_SPEED = 100.5;
 
 export default function UniverseGroup(props) {
   const { camPosition, cameraRef } = props;
 
   const [zooming, setZooming] = useState(true);
+  const [startTime, setStartTime] = useState();
   const spaceMesh = React.useRef();
   const textMesh = React.useRef();
 
@@ -37,17 +45,25 @@ export default function UniverseGroup(props) {
     }
   }, [camPosition, cameraRef, zooming]);
 
-  //TODO: Update to be dependent on clock for speed instead of FPS
-  useFrame(() => {
-    if (zooming && cameraRef.current) {
-      // Gradually decrease the z-position of the camera to zoom in
-      if (cameraRef.current.position.z > 112) {
-        cameraRef.current.position.z -= 0.04; // Slower zoom-in speed
-      } else if (cameraRef.current.position.z > 38) {
-        cameraRef.current.position.z -= 1; // Quicker zoom-in speed
-      } else {
-        setZooming(false);
-      }
+  const updateCameraPosition = (zCoord, speed, camera, elapsedTime, timeToOffset = 0) => {
+    const distanceDelta = (elapsedTime - timeToOffset) * speed;
+    camera.position.z = zCoord - distanceDelta;
+  };
+
+  //Zoom intro sequence
+  useFrame(({ clock }) => {
+    if (startTime == null) setStartTime(clock.getElapsedTime());
+
+    if (!zooming || !cameraRef.current || startTime == null) return;
+    const camera = cameraRef.current;
+    const elapsedTime = clock.getElapsedTime() - startTime;
+    // Gradually decrease the z-position of the camera to zoom in
+    if (camera.position.z > MIDPOINT) {
+      updateCameraPosition(STARTPOINT, SLOW_ZOOM_SPEED, camera, elapsedTime);
+    } else if (camera.position.z > ENDPOINT) {
+      updateCameraPosition(MIDPOINT, QUICK_ZOOM_SPEED, camera, elapsedTime, QUICK_ZOOM_START_TIME);
+    } else {
+      setZooming(false);
     }
   });
 
