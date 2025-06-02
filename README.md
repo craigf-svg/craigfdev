@@ -2,10 +2,6 @@
 
 ![Screenshot](https://github.com/user-attachments/assets/1f2d1d57-5504-49a5-8460-145561f45c32)
 
-## Live Demo
-
-Click here to explore the [Live Demo](https://www.craigfdev.com)
-
 ## Features
 
 * Rotating galaxy with randomly generated colors for the points
@@ -23,8 +19,12 @@ This 3D environment was creating using
 * [drei](https://drei.docs.pmnd.rs/getting-started/introduction) - Used for camera, fly controls, and GLTF file loading
 * [react-postprocessing](https://github.com/pmndrs/react-postprocessing) - Used to apply postprocessing effects like vignette and bloom
 
-Hosted using AWS CloudFront and S3.
+## Start up
 
+- Install dependencies `npm install`
 
+- Start the app `npm start`
+
+- Open in your browser `http://localhost:3000`
 
 ### Enjoy exploring! 🚀
